@@ -5,8 +5,8 @@
       <id name="id" type="int" column="id_producto">
           <generator class="increment"/>
       </id>
-      <property name="Nombre" type="String" column="Nombre"/>
-      <property name="Descripcion" type="String" column="Descripcion"/>
+      <property name="Nombre" type="string" column="Nombre"/>
+      <property name="Descripcion" type="string" column="Descripcion"/>
       <property name="precio" type="float" column="Precio"/>
       <property name="existencias" type="int" column="Existencias"/>
   </class>
