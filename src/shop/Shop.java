@@ -5,6 +5,9 @@
  */
 package shop;
 
+import com.ipn.model.ProductoDao;
+import com.ipn.model.beans.Producto;
+
 /**
  *
  * @author Al3x
@@ -16,6 +19,14 @@ public class Shop {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ProductoDao p = new ProductoDao();
+        Producto producto = new Producto();
+        producto.setId(124);
+        producto.setNombre("Coca-cola");
+        producto.setDescripcion("refresco de cola");
+        producto.setExistencias(12);
+        producto.setPrecio((float) 10.00);
+        p.create(producto);
         System.out.println("Hola mundo");
     }
     
