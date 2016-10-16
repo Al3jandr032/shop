@@ -1,4 +1,10 @@
 *.class
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
