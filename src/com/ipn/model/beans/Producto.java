@@ -73,6 +73,11 @@ public class Producto implements Serializable{
     }
 
     @Override
+    public String toString() {
+        return "Producto{" + "id=" + id + ", Nombre=" + Nombre + ", Descripcion=" + Descripcion + ", precio=" + precio + ", existencias=" + existencias + '}';
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

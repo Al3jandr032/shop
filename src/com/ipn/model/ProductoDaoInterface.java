@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface ProductoDaoInterface {
     public void create(Producto p);
-    public Producto read(Producto p);
+    public Producto read(int id);
     public void update(Producto p);
     public List readAll();
     public void delete(Producto p);

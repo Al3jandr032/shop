@@ -8,6 +8,7 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password"></property>
     <property name="hibernate.current_session_context_class">thread</property>
+    <property name="show_sql">true</property>
     <mapping resource="Producto.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

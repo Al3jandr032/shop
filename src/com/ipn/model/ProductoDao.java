@@ -14,7 +14,7 @@ import org.hibernate.Transaction;
  * @author Al3x
  */
 public class ProductoDao implements ProductoDaoInterface {
-
+    List<Producto> lst = null;
     @Override
     public void create(Producto p) {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -60,12 +60,13 @@ public class ProductoDao implements ProductoDaoInterface {
         }
     }
     @Override
-    public Producto read(Producto p) {
+    public Producto read(int id) {
+        Producto p = null;
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = s.getTransaction();
         try{
         tx.begin();
-        p = (Producto) s.get(p.getClass(), p.getId());
+        p = (Producto) s.get(Producto.class, id);
         tx.commit();
         }catch(Exception ex){
             if(tx != null){
@@ -77,13 +78,12 @@ public class ProductoDao implements ProductoDaoInterface {
 
     @Override
     public List readAll() {
-        List<Producto> lst = null;
+        
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = s.getTransaction();
         try{
         tx.begin();
-        Query q =  s.createQuery("from Productos");
-        lst = q.list();
+        lst =  s.createCriteria(Producto.class).list();
         tx.commit();
         }catch(Exception ex){
             if(tx != null){
