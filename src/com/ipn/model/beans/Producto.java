@@ -4,6 +4,7 @@
 package com.ipn.model.beans;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,6 +22,7 @@ public class Producto implements Serializable{
     private String Descripcion;
     private float precio;
     private int existencias;
+    private byte[] photo;
 
     public int getId() {
         return id;
@@ -100,4 +102,13 @@ public class Producto implements Serializable{
         }
         return true;
     }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+    
 }

@@ -4,7 +4,12 @@
 package com.ipn.model;
 
 import com.ipn.model.beans.Producto;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Blob;
 import java.util.List;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -19,7 +24,7 @@ public class ProductoDao implements ProductoDaoInterface {
     public void create(Producto p) {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = s.getTransaction();
-        try{
+        try{        
         tx.begin();
         s.save(p);
         tx.commit();
@@ -94,8 +99,15 @@ public class ProductoDao implements ProductoDaoInterface {
         return lst;
     }
 
-    
+    public byte[] readBytesFromFile(String filePath) throws IOException {
+        File inputFile = new File(filePath);
+        FileInputStream inputStream = new FileInputStream(inputFile);
+         
+        byte[] fileBytes = new byte[(int) inputFile.length()];
+        inputStream.read(fileBytes);
+        inputStream.close();
+         
+        return fileBytes;
+    }
 
-   
-    
 }
