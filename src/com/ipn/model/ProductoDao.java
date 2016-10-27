@@ -110,4 +110,27 @@ public class ProductoDao implements ProductoDaoInterface {
         return fileBytes;
     }
 
+    @Override
+    public void updateEx(int id, int ex) {
+        int ex_actual;
+        Producto p = null;
+        Query query = null;
+        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = s.getTransaction();
+        tx.begin();
+        /*
+        p = (Producto) s.get(Producto.class, id);
+      
+        System.out.println("Existencia Actual :"+p.getExistencias());
+        */
+        query = s.createQuery("update Producto set Existencias = :existencia"
+                + " where id = :id_p");
+        query.setParameter("existencia", ex);
+        query.setParameter("id_p", id);
+        int result = query.executeUpdate();
+        
+        tx.commit();
+       
+    }
+
 }

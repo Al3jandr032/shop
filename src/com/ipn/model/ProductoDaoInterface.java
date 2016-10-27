@@ -18,5 +18,6 @@ public interface ProductoDaoInterface {
     public void update(Producto p);
     public List readAll();
     public void delete(Producto p);
+    public void updateEx(int id,int ex);
     
 }

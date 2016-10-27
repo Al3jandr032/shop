@@ -21,6 +21,7 @@ public class ClienteTest {
             for(int i=0;i<lst.size();i++){
                 System.out.println((Producto)lst.get(i));
             }
+            c.recibirImagenes();
         } catch (IOException ex) {
             Logger.getLogger(ClienteTest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

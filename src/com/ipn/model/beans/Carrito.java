@@ -1,41 +1,60 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
  */
 package com.ipn.model.beans;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  *
  * @author Alejandro
  */
 public class Carrito {
-    private float total;
-    private float subtotal;
-    private int numProdutos;
+    
+    private List<Producto> productos;
+    private  HashMap<Integer,Integer> dic;
+
    
+    public Carrito() {
+        dic =new HashMap<Integer,Integer>();
+        productos = new ArrayList();
+    }
+    
+    public void add(Producto p, int cantidad){
+        this.productos.add(p);
+        dic.put(p.getId(), cantidad);
+    }
+    public void remove(Producto p){
+        dic.remove(p.getId());
+        this.productos.remove(p);
+    }
+    
+    public void update(Producto p, int cantidad){
+        this.add(p, cantidad);
+    }
+    
     public float getTotal() {
+        float total = 0.0f;
+        for (Producto p : this.productos){
+            total = total + (p.getPrecio()*this.dic.get(p.getId()) );
+        }
         return total;
     }
 
-    public void setTotal(float total) {
-        this.total = total;
+     public List<Producto> getProductos() {
+        return productos;
     }
 
-    public float getSubtotal() {
-        return subtotal;
+    public HashMap<Integer, Integer> getDic() {
+        return dic;
     }
 
-    public void setSubtotal(float subtotal) {
-        this.subtotal = subtotal;
-    }
 
     public int getNumProdutos() {
-        return numProdutos;
+        return this.productos.size();
     }
 
-    public void setNumProdutos(int numProdutos) {
-        this.numProdutos = numProdutos;
-    }
+   
     
 }

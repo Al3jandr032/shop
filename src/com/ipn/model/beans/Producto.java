@@ -24,6 +24,19 @@ public class Producto implements Serializable{
     private int existencias;
     private byte[] photo;
 
+    public Producto(int id, String Nombre, String Descripcion, float precio, int existencias, byte[] photo) {
+        this.id = id;
+        this.Nombre = Nombre;
+        this.Descripcion = Descripcion;
+        this.precio = precio;
+        this.existencias = existencias;
+        this.photo = photo;
+    }
+    
+    public Producto(){
+        this(0,"","",(float)0.0,0,null);
+    }
+
     public int getId() {
         return id;
     }
