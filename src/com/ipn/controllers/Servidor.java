@@ -3,6 +3,7 @@
  */
 package com.ipn.controllers;
 
+import com.ipn.model.ProductoDao;
 import com.ipn.model.beans.Producto;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,13 +22,15 @@ import java.util.List;
  * @author Alejandro
  */
 public class Servidor {
-    ServerSocket welcomeSocket;
-    ObjectInputStream in;
-    ObjectOutputStream out;
+    private ServerSocket welcomeSocket;
+    private ObjectInputStream in;
+    private ObjectOutputStream out;
     private List<Producto> lst;
+    private ProductoDao pdao;
     
     public Servidor(int port) throws IOException{
         this.lst = null;
+        pdao = new ProductoDao();
         welcomeSocket = new ServerSocket(port);
         Socket connectionSocket = welcomeSocket.accept();
         System.out.println("Conectado");
@@ -42,9 +45,15 @@ public class Servidor {
         out.close();
         in.close();
     }
-    public Producto RecibirDatosCompra(){
+    public void RecibirDatosCompra() throws IOException{
+        int size = this.in.readInt();
+        int id,cantidad;
+        for(int i=0;i<size;i++){
+            id = this.in.readInt();
+            cantidad = this.in.readInt();
+            pdao.updateEx(id, cantidad);
+        }
         
-        return null;
     }
     
     public void EnviarProductos(List<Producto> p) throws IOException{
@@ -57,12 +66,13 @@ public class Servidor {
             this.out.writeObject(p.get(i));
             this.out.flush();
         }
+        /*
         this.out.writeInt(p.size());
         this.out.flush();
         for(int i=0; i<p.size();i++){
             this.enviarImagen(p.get(i).getPhoto());
         }
-        
+        */
         System.out.println("Enviados objetos");
         
     }

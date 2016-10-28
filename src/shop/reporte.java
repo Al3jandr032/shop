@@ -18,9 +18,9 @@ public class reporte {
         public static void main(String[] args) {
                Carrito c = new Carrito();
                Producto p = new Producto(12,"Coca","Refresco",10.00f,13,null);
-               c.add(p,5);
+               //c.add(p,5);
                p = new Producto(12,"Indio","Cerveza",18.00f,12,null);
-               c.add(p,3);
+               //c.add(p,3);
                GeneradorTicket t = new GeneradorTicket(c);
                t.generarTicket();
         }

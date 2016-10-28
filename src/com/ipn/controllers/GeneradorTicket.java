@@ -40,6 +40,7 @@ public class GeneradorTicket {
     }
     
     public void generarTicket(){
+        System.out.println("generando ticket");
          try {
                         document = new Document();
                         PdfWriter.getInstance(document, new FileOutputStream(FILE));
@@ -50,13 +51,14 @@ public class GeneradorTicket {
                 } catch (Exception e) {
                         e.printStackTrace();
                 }
+         System.out.println("generado");
     }
     private void addMetaData() {
-                document.addTitle("My first PDF");
+                document.addTitle("Ticket");
                 document.addSubject("Using iText");
                 document.addKeywords("Java, PDF, iText");
-                document.addAuthor("Lars Vogel");
-                document.addCreator("Lars Vogel");
+                document.addAuthor("MAyte");
+                document.addCreator("Mayte");
         }
 
         private void addContent() throws DocumentException
@@ -110,9 +112,9 @@ public class GeneradorTicket {
         //add cell for product
         for (Producto producto : this.carrito.getProductos()) {
             table.addCell(producto.getNombre());
-            table.addCell(String.valueOf(this.carrito.getDic().get(producto.getId())));
+            table.addCell(String.valueOf( this.carrito.getDic().get(producto.getId()).getCantidad()  ) );
             table.addCell(String.valueOf(producto.getPrecio()));
-            table.addCell(String.valueOf( producto.getPrecio()*this.carrito.getDic().get(producto.getId()) ));
+            table.addCell(String.valueOf( producto.getPrecio()*this.carrito.getDic().get(producto.getId()).getCantidad() ));
         }
                table.addCell("Total");
                table.addCell(" ");

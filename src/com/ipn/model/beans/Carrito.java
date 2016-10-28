@@ -13,31 +13,34 @@ import java.util.List;
 public class Carrito {
     
     private List<Producto> productos;
-    private  HashMap<Integer,Integer> dic;
-
-   
+    private  HashMap<Integer,Compra> dic;
+    
     public Carrito() {
-        dic =new HashMap<Integer,Integer>();
+        dic =new HashMap<Integer,Compra>();
         productos = new ArrayList();
+       
     }
     
-    public void add(Producto p, int cantidad){
+    
+    public void add(Producto p, Compra c){
         this.productos.add(p);
-        dic.put(p.getId(), cantidad);
+        this.dic.put(p.getId(), c);
+        
     }
     public void remove(Producto p){
         dic.remove(p.getId());
-        this.productos.remove(p);
+        for(int i=0;i<this.productos.size();i++){
+            if(p.getId() == this.productos.get(i).getId())
+                this.productos.remove(i);
+        }
     }
     
-    public void update(Producto p, int cantidad){
-        this.add(p, cantidad);
-    }
+  
     
     public float getTotal() {
         float total = 0.0f;
         for (Producto p : this.productos){
-            total = total + (p.getPrecio()*this.dic.get(p.getId()) );
+            total = total + (p.getPrecio()*this.dic.get(p.getId()).getCantidad() );
         }
         return total;
     }
@@ -46,15 +49,21 @@ public class Carrito {
         return productos;
     }
 
-    public HashMap<Integer, Integer> getDic() {
-        return dic;
-    }
-
-
+    
     public int getNumProdutos() {
         return this.productos.size();
     }
 
+    public HashMap<Integer,Compra> getDic() {
+        return dic;
+    }
+
+    public void setDic(HashMap<Integer,Compra> dic) {
+        this.dic = dic;
+    }
+
+    
+    
    
     
 }
